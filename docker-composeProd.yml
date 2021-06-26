@@ -1,0 +1,22 @@
+version: "3"
+services:
+  BijouBrocUiProd:
+    image: node:latest
+    container_name: ProdBijouBrocUi
+    working_dir: /app
+    restart: always
+    volumes:
+      - ./:/app
+    environment:
+      - NODE_ENV=production
+    expose:
+      - 1336
+    networks:
+      - bijoubroc
+      - weebo
+    command: "yarn static"
+networks:
+  bijoubroc:
+    name: bijoubroc
+  weebo:
+    name: weebo
