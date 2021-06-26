@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: [self-hosted, Linux, X64, prod]
+    runs-on: [self-hosted, Linux, X64, dev]
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v2
@@ -16,5 +16,10 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: 14
-      - run: yarn install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: install
+      - uses: borales/actions-yarn@v2.3.0
+        with:
+          cmd: build
       - run: docker-compose -f docker-composeDev.yml up -d
