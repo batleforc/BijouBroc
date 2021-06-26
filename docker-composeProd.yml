@@ -10,7 +10,7 @@ services:
     environment:
       - NODE_ENV=production
     expose:
-      - 1336
+      - 8080
     networks:
       - bijoubroc
       - weebo
