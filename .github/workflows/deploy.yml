@@ -1,0 +1,20 @@
+name: BijouBrocUi:Dev:Deploy
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  build:
+    runs-on: [self-hosted, Linux, X64, prod]
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v1
+
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: yarn
+      - run: docker-compose -f docker-composeDev.yml up -d
